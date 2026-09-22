@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JEE Mock Test</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= IMPORT SCREEN ================= -->
+
+<div id="importScreen" class="screen">
+
+    <div class="container import-container">
+
+        <h1>JEE Mock Test</h1>
+
+        <p class="subtitle">
+            Paste your AI-generated MCQ paper below.
+        </p>
+
+        <div class="settings-box">
+
+            <label for="testTitle">
+                Test Name
+            </label>
+
+            <input
+                type="text"
+                id="testTitle"
+                placeholder="Example: JEE Chemistry Revision Test"
+            >
+
+            <label for="duration">
+                Test Duration
+            </label>
+
+            <select id="duration">
+
+                <option value="180">3 Hours</option>
+                <option value="120">2 Hours</option>
+                <option value="60">1 Hour</option>
+                <option value="30">30 Minutes</option>
+
+            </select>
+
+        </div>
+
+        <textarea
+            id="questionInput"
+            placeholder="Paste your questions here..."
+        ></textarea>
+
+        <div class="format-help">
+
+            <h3>Supported Format</h3>
+
+            <pre>[MCQ]
+Question: What is 2 + 2?
+A: 3
+B: 4
+C: 5
+D: 6
+Answer: B
+
+[MCQ]
+Question: Which particle has a negative charge?
+A: Proton
+B: Neutron
+C: Electron
+D: Photon
+Answer: C</pre>
+
+        </div>
+
+        <button id="loadTestBtn" class="primary-btn">
+            Load Test
+        </button>
+
+        <p id="importError" class="error"></p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TEST SCREEN ================= -->
+
+<div id="testScreen" class="screen hidden">
+
+    <header class="test-header">
+
+        <div>
+            <strong id="testTitleDisplay">
+                JEE Mock Test
+            </strong>
+        </div>
+
+        <div id="timer">
+            03:00:00
+        </div>
+
+        <button id="submitBtn" class="submit-btn">
+            Submit Test
+        </button>
+
+    </header>
+
+
+    <main class="test-layout">
+
+        <!-- QUESTION AREA -->
+
+        <section class="question-area">
+
+            <div class="question-top">
+
+                <span id="questionNumber">
+                    Question 1
+                </span>
+
+                <span id="questionStatus">
+                    Not Attempted
+                </span>
+
+            </div>
+
+            <div
+                id="questionText"
+                class="question-text">
+            </div>
+
+            <div
+                id="optionsContainer"
+                class="options-container">
+            </div>
+
+            <div class="action-buttons">
+
+                <button id="clearBtn">
+                    Clear Response
+                </button>
+
+                <button id="reviewBtn">
+                    Mark for Review
+                </button>
+
+            </div>
+
+            <div class="navigation-buttons">
+
+                <button id="previousBtn">
+                    ← Previous
+                </button>
+
+                <button id="nextBtn">
+                    Next →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUESTION PALETTE -->
+
+        <aside class="palette">
+
+            <h3>Questions</h3>
+
+            <div class="legend">
+
+                <span>
+                    <i class="legend-box answered"></i>
+                    Answered
+                </span>
+
+                <span>
+                    <i class="legend-box review"></i>
+                    Review
+                </span>
+
+                <span>
+                    <i class="legend-box not-attempted"></i>
+                    Not Attempted
+                </span>
+
+            </div>
+
+            <div
+                id="questionPalette"
+                class="question-grid">
+            </div>
+
+        </aside>
+
+    </main>
+
+</div>
+
+
+<!-- ================= RESULT SCREEN ================= -->
+
+<div id="resultScreen" class="screen hidden">
+
+    <div class="container result-container">
+
+        <h1>Test Result</h1>
+
+        <h2 id="resultTestTitle"></h2>
+
+        <div class="score-box">
+
+            <div class="score">
+                <span id="totalMarks">0</span>
+                /
+                <span id="maximumMarks">0</span>
+            </div>
+
+            <div class="result-stats">
+
+                <div>
+                    <strong id="correctCount">0</strong>
+                    <span>Correct</span>
+                </div>
+
+                <div>
+                    <strong id="wrongCount">0</strong>
+                    <span>Wrong</span>
+                </div>
+
+                <div>
+                    <strong id="notAttemptedCount">0</strong>
+                    <span>Not Attempted</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <h3>Question-wise Result</h3>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Question</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="resultTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="result-buttons">
+
+            <button id="copyResultBtn" class="primary-btn">
+                Copy Result
+            </button>
+
+            <button id="newTestBtn">
+                New Test
+            </button>
+
+        </div>
+
+        <p id="copyMessage"></p>
+
+    </div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
